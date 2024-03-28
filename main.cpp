@@ -153,13 +153,46 @@ int main() {
     int num;
 
     // ask the user to enter a number between 0 - 9
-    cout << "Enter a number (0-999): ";
+    cout << "Enter a number: ";
     cin >> num;
     if (num == 0) {
         cout << "zero" << endl;
     }
     else {
-        cout << spellHundred(num) << endl;
+        int num1 = num;
+        int count = 0;
+        string spellnum = "";
+        while (num1 > 0) {
+            int digits = num1 % 1000;
+            string spell3digits = spellHundred(digits); // add the new three digits at the beginning
+            switch (count) {
+                case 0:
+                    spellnum = spell3digits;
+                    break;
+                case 1:  // add word thousand
+                if (spell3digits != "") {
+                    spellnum = spell3digits + " thousand " + spellnum;
+                }
+                break;
+
+                case 2:  // add word million
+                    if (spell3digits != "") {
+                        spellnum = spell3digits + " million " + spellnum;
+                    }
+                break;
+                case 3:  // add word billion
+                    if (spell3digits != "") {
+                        spellnum = spell3digits + " billion " + spellnum;
+                    }
+                break;
+
+            }
+
+
+            count++;
+            num1 = num1 / 1000;
+        }
+        cout << spellnum << endl;
 
     }
 
