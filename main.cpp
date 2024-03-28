@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cassert>
 
 using namespace std;
 
@@ -145,18 +146,12 @@ string spellHundred(int num) {
 // 1,100,111, 10,445,222, 100,222,222  count = 2
 // 2,111,121,111  count = 3
 
+//
 
 
-
-
-int main() {
-    int num;
-
-    // ask the user to enter a number between 0 - 9
-    cout << "Enter a number: ";
-    cin >> num;
+string spellnumbers(int num) {
     if (num == 0) {
-        cout << "zero" << endl;
+        return "zero";
     }
     else {
         int num1 = num;
@@ -192,9 +187,29 @@ int main() {
             count++;
             num1 = num1 / 1000;
         }
-        cout << spellnum << endl;
-
+        // cout << spellnum << endl;
+        return spellnum;
     }
+}
 
+void test() {
+    int num = 0;
+    string s = spellnumbers(num);
+    assert(s == "zero");
+
+}
+
+
+int main() {
+    int num;
+
+//     ask the user to enter a number between 0 - 9
+    cout << "Enter a number: ";
+    cin >> num;
+     spellnumbers(num);
+
+
+    // unit testing
+    test();
     return 0;
 }
